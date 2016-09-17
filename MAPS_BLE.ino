@@ -12,8 +12,8 @@
 #define DHTTYPE DHT22         // DHT type
 #define RxD 6                 // connect to BLE tx
 #define TxD 7                 // connect to BLE rx
-#define pmRxD 4                 // connect to pm2.5 G3 tx
-#define pmTxD 5                 // connect to pm2.5 G3 rx
+#define pmRxD 4               // connect to pm2.5 G3 tx
+#define pmTxD 5               // connect to pm2.5 G3 rx
 
 #define source_drive 9        // trigger CO2 sensor
 #define CALIBRATE_CONCENTRATION 1000
@@ -21,31 +21,28 @@
 #define CO2_b 0.00041
 #define CO2_c 0.897
 #define CO2_Ba 0.0005
-#define CO2_CLB_RATIO 1.269052
-#define CO2_ZERO 1.354519
-#define CO2_Tcal 26.74031
+#define CO2_CLB_RATIO 1.269052	//this should be different for every sensors - ACT/REF
+#define CO2_ZERO 1.354519		//this should be different for every sensors - ACT0/REF0
+#define CO2_Tcal 26.74031		//this should be different for every sensors - calibration temperature
 
-#define MAPS_ID "000"
+#define MAPS_ID "000"			//device ID
 
-#define SAFE_LIGHT 10  //led pin #
-#define WARN_LIGHT 11
-#define DANGER_LIGHT 12
+#define SAFE_LIGHT 10  			//led pin #
+#define WARN_LIGHT 11			//led pin #
+#define DANGER_LIGHT 12			//led pin #
 
-#define PM_SAFE 35
-#define PM_WARN 53
-#define CO2_SAFE 1000
+#define PM_SAFE 35				//PM2.5 safe threshold
+#define PM_WARN 53				//PM2.5 warning threshold
+#define CO2_SAFE 1000			//CO2 safe threshold (indoor)
 //
 //#define CO2_CLB_RATIO 1.232713
 //#define CO2_ZERO 1.385105
 //#define CO2_Tcal 26.512873
 
-#define analog_vol 0.0048875  // 5v/1023
+#define analog_vol 0.0048875  	// 5v/1023
 
-
-SoftwareSerial BLE(RxD,TxD);  // for BLE
-
-
-SoftwareSerial G3(pmRxD,pmTxD);       // for pm2.5 G3 module
+SoftwareSerial BLE(RxD,TxD);  	// for BLE
+SoftwareSerial G3(pmRxD,pmTxD);	// for pm2.5 G3 module
 /********
 for CO2 temperature and Resistor transform, these values are from CO2 spec
 ********/
@@ -163,7 +160,7 @@ void setup(){
 	dht.begin();
 	
 	
-	// Barometer bmp180
+	// Barometer bmp180, uncomment this line, if you want to use it
 	//  pressure.begin();
 	
 	// Check rtc, and set the time if it is not running
@@ -172,14 +169,11 @@ void setup(){
 		while (1);
 	}
 	//  rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
-	//  if (! rtc.isrunning()) {
-	//    Serial.println("RTC is NOT running!");
-	//    // Following line sets the RTC to the date & time this sketch was compiled
-	rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
-	//    // This line sets the RTC with an explicit date & time, for example to set
-	//    // Oct 16, 2015 at 3pm you would call:
-	//    // rtc.adjust(DateTime(2015, 10, 16, 15, 0, 0));
-	//  }
+	if (! rtc.isrunning()) {
+		Serial.println("RTC is NOT running!");
+		// Following line sets the RTC to the date & time this sketch was compiled
+		rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+	}
 	
 	// set led
 	pinMode(SAFE_LIGHT, OUTPUT);
@@ -210,12 +204,12 @@ void loop(){
 	char pressure[20];          // barometer value buffer
 	char CO2_buff[20];
 	
-	double ABSx = 0;
-	double SPANcal = 0;
-	double ABS = 0;
-	double ABSt = 0;
-	double SPANt = 0;
-	double CO2_ppm = 0;
+	double ABSx = 0;			// initial value
+	double SPANcal = 0;			// initial value
+	double ABS = 0;				// initial value
+	double ABSt = 0;			// initial value
+	double SPANt = 0;			// initial value
+	double CO2_ppm = 0;			// initial value
 	 
 	// get CPU tick (second)
 	time_after_booting = millis()/1000;
@@ -223,7 +217,7 @@ void loop(){
 	// get time
 	DateTime maps_time = rtc.now();
 	
-	// Reading alpha sense CO2 voltage, parameter: sensing time in millisecond
+	// Reading alpha sense CO2 voltage, parameter: sensing time in millisecond, change it whenever you want
 	ReadVoltage(57000);
 	
 	
@@ -267,11 +261,11 @@ void loop(){
 	// PM2.5 
 	pm25sensorG3(pm1_result, pm25_result, pm10_result);
 	Serial.print("P+");
-	Serial.print(pm1_result);
+	Serial.print(pm1_result);	//PM1
 	Serial.print("+");
-	Serial.print(pm25_result);
+	Serial.print(pm25_result);	//PM2.5
 	Serial.print("+");
-	Serial.print(pm10_result);
+	Serial.print(pm10_result);	//PM10
 	Serial.print("+");
 	
 	// get barometer pressure value
@@ -337,44 +331,6 @@ void loop(){
 	else{
 		// keep the same state
 	}
-	//  while(true){
-	//    if(Serial.available()){
-	//      if(Serial.read() == 'Y'){
-	//        digitalWrite(led, HIGH);   // turn the LED on (HIGH is the voltage level)
-	//        delay(250);               // wait for a second
-	//        digitalWrite(led, LOW);    // turn the LED off by making the voltage LOW
-	//        delay(250);
-	//        digitalWrite(led, HIGH);
-	//        delay(250);               
-	//        digitalWrite(led, LOW);    
-	//        delay(250);
-	//        digitalWrite(led, HIGH);   
-	//        delay(250);               
-	//        digitalWrite(led, LOW);    
-	//        delay(250);
-	//        digitalWrite(led, HIGH);   
-	//        delay(250);               
-	//        digitalWrite(led, LOW); 
-	//        delay(250);
-	//        digitalWrite(led, HIGH);
-	//        delay(250);               
-	//        digitalWrite(led, LOW);    
-	//        delay(250);
-	//        digitalWrite(led, HIGH);   
-	//        delay(250);               
-	//        digitalWrite(led, LOW);  
-	//        delay(250);
-	//      }
-	//      else{
-	//        digitalWrite(led, HIGH);   
-	//        delay(3000);               
-	//        digitalWrite(led, LOW);    
-	//      }
-	//      break; 
-	//    }
-	//    
-	//  }
-
 }
 
 
@@ -619,56 +575,52 @@ double getPressure()
   // If request is unsuccessful, 0 is returned.
 
   status = pressure.startTemperature();
-  if (status != 0)
-  {
-    // Wait for the measurement to complete:
-
-    delay(status);
-
-    // Retrieve the completed temperature measurement:
-    // Note that the measurement is stored in the variable T.
-    // Use '&T' to provide the address of T to the function.
-    // Function returns 1 if successful, 0 if failure.
-
-    status = pressure.getTemperature(T);
-    if (status != 0)
-    {
-      // Start a pressure measurement:
-      // The parameter is the oversampling setting, from 0 to 3 (highest res, longest wait).
-      // If request is successful, the number of ms to wait is returned.
-      // If request is unsuccessful, 0 is returned.
-
-      status = pressure.startPressure(3);
-      if (status != 0)
-      {
-        // Wait for the measurement to complete:
-        delay(status);
-
-        // Retrieve the completed pressure measurement:
-        // Note that the measurement is stored in the variable P.
-        // Use '&P' to provide the address of P.
-        // Note also that the function requires the previous temperature measurement (T).
-        // (If temperature is stable, you can do one temperature measurement for a number of pressure measurements.)
-        // Function returns 1 if successful, 0 if failure.
-
-        status = pressure.getPressure(P,T);
-        if (status != 0)
-        {
-          return(P);
-        }
-        else{
-//          Serial.println("error retrieving pressure measurement\n");
-        } 
-      }
-      else{
-//        Serial.println("error starting pressure measurement\n");
-      } 
-    }
-    else{
-//      Serial.println("error retrieving temperature measurement\n");
-    }
-  }
-  else{
-//    Serial.println("error starting temperature measurement\n");
-  }
+	if (status != 0){
+	// Wait for the measurement to complete:
+	
+	delay(status);
+	
+	// Retrieve the completed temperature measurement:
+	// Note that the measurement is stored in the variable T.
+	// Use '&T' to provide the address of T to the function.
+	// Function returns 1 if successful, 0 if failure.
+	
+	status = pressure.getTemperature(T);
+		if (status != 0){
+			// Start a pressure measurement:
+			// The parameter is the oversampling setting, from 0 to 3 (highest res, longest wait).
+			// If request is successful, the number of ms to wait is returned.
+			// If request is unsuccessful, 0 is returned.
+			
+			status = pressure.startPressure(3);
+			if (status != 0){
+				// Wait for the measurement to complete:
+				delay(status);
+				
+				// Retrieve the completed pressure measurement:
+				// Note that the measurement is stored in the variable P.
+				// Use '&P' to provide the address of P.
+				// Note also that the function requires the previous temperature measurement (T).
+				// (If temperature is stable, you can do one temperature measurement for a number of pressure measurements.)
+				// Function returns 1 if successful, 0 if failure.
+				
+				status = pressure.getPressure(P,T);
+				if (status != 0){
+					return(P);
+				}
+				else{
+					// Serial.println("error retrieving pressure measurement\n");
+				} 
+			}
+			else{
+				// Serial.println("error starting pressure measurement\n");
+			} 
+		}
+		else{
+			// Serial.println("error retrieving temperature measurement\n");
+		}
+	}
+	else{
+		// Serial.println("error starting temperature measurement\n");
+	}
 }
