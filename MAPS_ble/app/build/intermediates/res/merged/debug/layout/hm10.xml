@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp" >
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="left"
+        android:text="Last update: "
+        android:textSize="16sp" />
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="bottom"-->
+            <!--android:gravity="left"-->
+            <!--android:text="@string/receivedText"-->
+            <!--android:textSize="16sp" />-->
+
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/myupdatetime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="left"
+            android:text=""
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <!--<TextView-->
+        <!--android:id="@+id/longReceivedText"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="" />-->
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:padding="5dp" >-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="bottom"-->
+            <!--android:gravity="left"-->
+            <!--android:text="@string/sentText"-->
+            <!--android:textSize="16sp" />-->
+
+        <!--<Space-->
+            <!--android:layout_width="20dp"-->
+            <!--android:layout_height="wrap_content" />-->
+
+        <!-- -->
+        <!--<EditText-->
+	    		<!--android:id="@+id/sentText"-->
+	    	    <!--android:layout_width="fill_parent"-->
+	    	    <!--android:layout_height="wrap_content"-->
+	            <!--android:layout_gravity="bottom"-->
+	            <!--android:maxLength="20"-->
+	            <!--android:gravity="left"-->
+	            <!--android:text=""-->
+	            <!--android:textSize="20sp" />  -->
+    <!--</LinearLayout>-->
+
+    <!--<TextView-->
+        <!--android:id="@+id/longTextReceived"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="" />-->
+
+    <!--<TextView-->
+        <!--android:id="@+id/textInfo"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="" />-->
+
+    <!--<TextView-->
+        <!--android:id="@+id/textNotification"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="" />-->
+
+    <!--<Space-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="10dp"-->
+        <!--tools:ignore="ButtonStyle" />-->
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:padding="3dp" >-->
+
+        <!--<Button-->
+            <!--android:id="@+id/buttonRead"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:padding="3dp"-->
+            <!--android:text="@string/read" />-->
+
+        <!--<Button-->
+            <!--android:id="@+id/buttonSend"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:padding="3dp"-->
+            <!--android:text="@string/send" />-->
+        
+        <!--<Button-->
+            <!--android:id="@+id/buttonReset"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:padding="3dp"-->
+            <!--android:text="@string/reset" />-->
+    <!--</LinearLayout>-->
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="#FF8400"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="------"
+                android:textColor="#FFFFFF"
+                android:textSize="90sp"
+                android:id="@+id/Temperature"
+                android:layout_column="0"
+                />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="#4285F4"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="------"
+                android:textColor="#FFFFFF"
+                android:textSize="90sp"
+                android:id="@+id/Humidity"
+                android:layout_column="1" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center_horizontal|top"
+                android:background="#FF8400"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="溫度"
+                android:textColor="#FFFFFF"
+                android:textSize="50sp"
+                android:id="@+id/temperature_title"
+                android:layout_column="0" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center_horizontal|top"
+                android:background="#4285F4"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="濕度"
+                android:textColor="#FFFFFF"
+                android:textSize="50sp"
+                android:id="@+id/humidity_title"
+                android:layout_column="1" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="#829979"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="------"
+                android:textColor="#FFFFFF"
+                android:textSize="90sp"
+                android:id="@+id/CO2_value"
+                android:layout_column="0" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="#DCA5E3"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="------"
+                android:textColor="#FFFFFF"
+                android:textSize="90sp"
+                android:id="@+id/PM25_value"
+                android:layout_column="1" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center_horizontal|top"
+                android:background="#829979"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="CO2"
+                android:textColor="#FFFFFF"
+                android:textSize="50sp"
+                android:id="@+id/CO2_title"
+                android:layout_column="0" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center_horizontal|top"
+                android:background="#DCA5E3"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="PM2.5"
+                android:textColor="#FFFFFF"
+                android:textSize="50sp"
+                android:id="@+id/PM25_title"
+                android:layout_column="1" />
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout><!-- From: file:/Users/jacklee/AndroidStudioProjects/MAPS_ble/app/src/main/res/layout/hm10.xml -->
