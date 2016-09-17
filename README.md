@@ -1,3 +1,3 @@
 # MAPS-Arduino Nano
 ![Image of PCB layout]
-(https://github.com/jack77121/MAPS---LinkIt-Smart-7688-Duo/blob/master/PCB_layout.png)
+(https://github.com/jack77121/MAPS---Nano-with-BLE/blob/master/PCB_layout.png)
