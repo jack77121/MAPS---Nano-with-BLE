@@ -10,5 +10,5 @@ Thanks to the technology, now we could build our own air pollution sensing stati
 
 For more air pollution sensing project, you can visit [LASS facebook](https://www.facebook.com/groups/1607718702812067/) and [LASS github](https://github.com/LinkItONEDevGroup/LASS), we are makers who sense anything in our environment!
 
-## 
+(Continue updating...)
 
